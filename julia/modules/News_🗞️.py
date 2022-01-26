@@ -42,9 +42,7 @@ async def _(event):
     if event.is_group:
         if await is_register_admin(event.input_chat, event.sender_id):
             pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
+        elif event.chat_id != iid or event.sender_id != userss:
             return
     sender = event.sender_id
     country = event.pattern_match.group(1)
@@ -78,9 +76,7 @@ async def paginate_news(event):
     if event.is_group:
         if await is_register_admin(event.input_chat, event.sender_id):
             pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
+        elif event.chat_id != iid or event.sender_id != userss:
             return
     tata = event.pattern_match.group(1)
     data = tata.decode()
@@ -89,7 +85,7 @@ async def paginate_news(event):
     if "|" in meta:
         sender, country, lang, index, chatid, msgid = meta.split("|")
     sender = int(sender.strip())
-    if not event.sender_id == sender:
+    if event.sender_id != sender:
         await event.answer("You haven't send that command !")
         return
     country = country.strip()
@@ -149,9 +145,7 @@ async def paginate_prevnews(event):
     if event.is_group:
         if await is_register_admin(event.input_chat, event.sender_id):
             pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
+        elif event.chat_id != iid or event.sender_id != userss:
             return
     tata = event.pattern_match.group(1)
     data = tata.decode()
@@ -160,7 +154,7 @@ async def paginate_prevnews(event):
     if "|" in meta:
         sender, country, lang, index, chatid, msgid = meta.split("|")
     sender = int(sender.strip())
-    if not event.sender_id == sender:
+    if event.sender_id != sender:
         await event.answer("You haven't send that command !")
         return
     country = country.strip()
@@ -179,8 +173,8 @@ async def paginate_prevnews(event):
     Client.close()
     soup_page = bs4.BeautifulSoup(xml_page, "xml")
     news_list = soup_page.find_all("item")
-    vector = len(news_list)
     if num < 0:
+        vector = len(news_list)
         num = vector - 1
     # print(vector)
     # print(num)
@@ -225,9 +219,7 @@ async def paginate_nextnews(event):
     if event.is_group:
         if await is_register_admin(event.input_chat, event.sender_id):
             pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
+        elif event.chat_id != iid or event.sender_id != userss:
             return
     tata = event.pattern_match.group(1)
     data = tata.decode()
@@ -236,7 +228,7 @@ async def paginate_nextnews(event):
     if "|" in meta:
         sender, country, lang, index, chatid, msgid = meta.split("|")
     sender = int(sender.strip())
-    if not event.sender_id == sender:
+    if event.sender_id != sender:
         await event.answer("You haven't send that command !")
         return
     country = country.strip()
@@ -299,9 +291,7 @@ async def newsstop(event):
     if event.is_group:
         if await is_register_admin(event.input_chat, event.sender_id):
             pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
+        elif event.chat_id != iid or event.sender_id != userss:
             return
     tata = event.pattern_match.group(1)
     data = tata.decode()
@@ -312,7 +302,7 @@ async def newsstop(event):
     sender = int(sender.strip())
     chatid = int(chatid.strip())
     msgid = int(msgid.strip())
-    if not event.sender_id == sender:
+    if event.sender_id != sender:
         await event.answer("You haven't send that command !")
         return
     await tbot.edit_message(chatid, msgid, "Thanks for reading.\n❤️ from Google News !")
@@ -327,9 +317,7 @@ async def paginate_nextnews(event):
     if event.is_group:
         if await is_register_admin(event.input_chat, event.sender_id):
             pass
-        elif event.chat_id == iid and event.sender_id == userss:
-            pass
-        else:
+        elif event.chat_id != iid or event.sender_id != userss:
             return
     tata = event.pattern_match.group(1)
     data = tata.decode()
@@ -338,7 +326,7 @@ async def paginate_nextnews(event):
     if "|" in meta:
         sender, country, lang, chatid, msgid = meta.split("|")
     sender = int(sender.strip())
-    if not event.sender_id == sender:
+    if event.sender_id != sender:
         await event.answer("You haven't send that command !")
         return
     country = country.strip()
